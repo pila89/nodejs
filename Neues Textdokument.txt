@@ -1,0 +1,97 @@
+import './App.css';
+import MovieList from './Components/MovieList';
+import { BrowserRouter as Router , Route , Routes } from "react-router-dom";
+import Moviedetail from './Components/MovieDetail'; 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Navbar,Nav,NavDropdown,Container,Row,Col,InputGroup,FormControl,Card,Button} from 'react-bootstrap'
+import {Link } from 'react-router-dom'
+const searchRate = (movies) => {
+  if(!searchRating){
+      return movies
+  }
+  return movies.filter(el =>{
+     return el.rating <= searchRating
+  })
+}
+
+const xx = [
+  {posterURL:"logo192.png",title:"Titanic",description:"Sinked ship",rating:5,id:1},
+  {posterURL:"logo192.png",title:"Fast and furious",description:"Drifing",rating:0,id:2},
+  {posterURL:"https://static.kino.de/wp-content/uploads/2010/08/House-of-Gucci-Poster-2021-rcm400x400u.jpg",title:"Twilight",description:"vampires",rating:0,id:3},
+]
+
+function App() {
+  
+  return (
+    <div>
+      <Router> 
+        <Navbar bg="light" expand="lg">
+          <Container>
+            <Navbar.Brand href="#home">Movie App</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto">
+                <Nav.Link><Link to = { `/list`} > Home</Link> </Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+        <Container>
+        <Row>
+            <Col xs={12} sm={6} md={8} >
+              <InputGroup className="mb-3 mt-4">
+                <FormControl
+                  placeholder="search  by name"
+                  aria-label="search  by name"
+                  aria-describedby="search  by name"
+                />
+                <InputGroup.Text id="basic-addon2">x</InputGroup.Text>
+              </InputGroup>
+            </Col>
+            <Col xs={12}  sm={6}  md={4} >
+            <InputGroup className="mb-3 mt-4">
+                <FormControl
+                  placeholder="filter by Rating"
+                  aria-label="filter by Rating"
+                  aria-describedby="filter by Rating"
+                  type="number" 
+                />
+              </InputGroup>
+            </Col>
+          </Row>
+       
+          <Row>
+            <Col xs={12} sm={6} md={8} >
+            <Card style={{ width: '18rem' }}>
+              <Card.Img variant="top" src="holder.js/100px180" />
+              <Card.Body>
+                <Card.Title>Card Title</Card.Title>
+                <Card.Text>
+                  Some quick example text to build on the card title and make up the bulk of
+                  the card's content.
+                </Card.Text>
+                <Button variant="primary">Go somewhere</Button>
+              </Card.Body>
+            </Card>
+            
+            </Col>
+            <Col xs={12}  sm={6}  md={4} >
+            <fieldset>
+              <legend>Add Movie</legend>
+              <div className="addForm">
+                <input type="text" placeholder='title' style={{width: "100%" }} className="mb-3 "/>
+                <input type="text" placeholder='description'  style={{width: "100%" }} className="mb-3 "/>
+                <input type="text" placeholder='img' style={{width: "100%" }} className="mb-3 "/>
+                <input type="text" placeholder='rating' style={{width: "100%" }} className="mb-3 " />
+                </div>
+                <Button variant="primary">Add Movie</Button>
+            </fieldset>
+            </Col>
+          </Row>
+        </Container>
+      </Router>
+    </div>
+  );
+}
+
+export default App;
